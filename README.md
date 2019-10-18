@@ -27,8 +27,8 @@ Raspberry Pi 1, Zero, ZeroW requires [manual compiling](https://github.com/adria
 **Enable ipv4 forwarding then reboot to make changes active:**
 
 ```console
-pi@raspberrypi:~ $ sudo perl -pi -e 's/#{1,}?net.ipv4.ip_forward ?= ?(0|1)/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf 
-pi@raspberrypi:~ $ sudo reboot
+pi@raspberrypi:~ $ printf "net.ipv4.ip_forward = 1\n" | sudo tee --append /etc/sysctl.d/99-sysctl.conf
+pi@raspberrypi:~ $ sudo sysctl -p
 ```
 
 To check if it has been enabled:
